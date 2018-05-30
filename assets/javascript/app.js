@@ -21,7 +21,7 @@ var questionList = [ {
 }, {
   question: "In Beauty and the Beast, what is the name of Gaston's bumbling sidekick?",
   choices: ["CandleStick", "LeFou", "Bummbles", "McFarley"],
-  indexAnswer: 0,
+  indexAnswer: 1,
   photo: "assets/images/Lefou.gif"
 }, {
   question: "What was the name of the kleptomaniac monkey in the Disney movie Aladdin?",
@@ -44,7 +44,7 @@ var questionList = [ {
 
 /*
  1. click start button to activate game hide reset button
- 2. start timer for 30 second and add question 1 to screen with possible answers.
+ 2. start timer for 20 second and add question 1 to screen with possible answers.
  3. if/else statements for both timer and possible answers
  4. set up images to be display if answers are correct / set Incorrect answer text with the correct answer text.
  5. move on the next question and possible answers
@@ -53,7 +53,7 @@ var questionList = [ {
 
 var correctCount = 0;
 var wrongCount = 0;
-var timer = 31;
+var timer = 20;
 var userAnswer = "";
 var timerId;
 var running = false;
@@ -91,12 +91,12 @@ $("#start").on("click", function(){
   });
   $("#next").on("click", function(){
     currentQuestion++;
-    timer = 31;
+    timer = 20;
     displayQuestion(currentQuestion);
   })
   $("#reset").on("click", function(){
     currentQuestion = 0;
-    timer = 31;
+    timer = 20;
     correctCount = 0;
     wrongCount = 0;
     displayQuestion(currentQuestion)
@@ -123,15 +123,16 @@ function decrement(){
   timer--;
   $("#timerCt").html("<h3>Time Remaining: " + timer + "<h3>");
   
-
+//stop timer if reach 0
   if(timer === 0) {
     currentQuestion++;
     displayQuestion(currentQuestion);
-    timer = 31;
-
-  }
-
+    timer = 20;
+    
+  } 
+    
 }
+//display & hide questions
 
 function displayQuestion (i){
   $("img").hide();
@@ -139,6 +140,8 @@ function displayQuestion (i){
   $("#correctAnswer").hide();
   $("input").show();
   $("input").prop("checked", false);
+
+//statements
   if (questionList.length == i+1){
     $("#numberCorrect").text("You got this many correct: " + correctCount).show();
     $("#numberWrong").text("You got this many wrong: " + wrongCount).show();
@@ -148,6 +151,7 @@ function displayQuestion (i){
     running = false;
     $("#containInput").hide();
   }
+  //for loop question & answers
   $("#questions").text(questionList[i].question);
    for (var j= 0; j < 4; j++){
     $("label[for=choice" + j + "]").text(questionList[i].choices[j]);
