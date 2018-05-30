@@ -61,50 +61,100 @@ var currentQuestion = 0;
 
 
 
+// hide elements until called 
 $("#reset").hide();
+$("img").hide();
 $("#next").hide();
+$("input").hide();
 
-//start game with start button
-
+//click start button to begin game
 $("#start").on("click", function(){
-// hide the start button
+
+// alert("I've been clicked, press okay and then I'm hidden");
     $("#start").hide();
+    displayQuestion(0);
     runTimer();
-    displayQuestions(0);
+  $("input").on("click", function(event){
+    if (questionList[currentQuestion].indexAnswer == $(this).val()){
+      correctCount++;
+      $("img").attr("src", questionList[currentQuestion].photo)
+      $("img").show();
+      console.log("correct");
+    } else {
+      var correctAnswerIndex = questionList[currentQuestion].indexAnswer;
+      var correctAnswerText = questionList[currentQuestion].choices[correctAnswerIndex];
+      $("#correctAnswer").text("The correct answer is " + correctAnswerText);
+      $("#correctAnswer").show();
+      wrongCount++;
+    }
+    $("#next").show();
+  });
+  $("#next").on("click", function(){
+    currentQuestion++;
+    timer = 31;
+    displayQuestion(currentQuestion);
+  })
+  $("#reset").on("click", function(){
+    currentQuestion = 0;
+    timer = 31;
+    correctCount = 0;
+    wrongCount = 0;
+    displayQuestion(currentQuestion)
+    runTimer();
+    $("#numberCorrect").hide();
+    $("#numberWrong").hide();
+    $("#timerCt").show();
+    $("#reset").hide();
+    $("#containInput").show();
+  })
+    
 })
 
-//timer countdown
+//timer start
 function runTimer(){
-  if (!running){
-    timerId = setInterval(decrement, 1000);
-    running = true;
-  }
+    if (!running){
+      timerId = setInterval(decrement, 1000);
+      running = true;
+    }
 }
 
+//timer countdown
 function decrement(){
   timer--;
-  $("#timerCt").html("<h3>Time remaining: " + timer + "<h3>");
+  $("#timerCt").html("<h3>Time Remaining: " + timer + "<h3>");
+  
 
-  // if(timer === 0) {
-  //   currentQuestion++;
-  //   displayQuestion(currentQuestion);
-  //   timer = 31;
+  if(timer === 0) {
+    currentQuestion++;
+    displayQuestion(currentQuestion);
+    timer = 31;
+
+  }
+
 }
 
+function displayQuestion (i){
+  $("img").hide();
+  $("#next").hide();
+  $("#correctAnswer").hide();
+  $("input").show();
+  $("input").prop("checked", false);
+  if (questionList.length == i+1){
+    $("#numberCorrect").text("You got this many correct: " + correctCount).show();
+    $("#numberWrong").text("You got this many wrong: " + wrongCount).show();
+    $("#reset").show();
+    clearInterval(timerId);
+    $("#timerCt").hide();
+    running = false;
+    $("#containInput").hide();
+  }
+  $("#questions").text(questionList[i].question);
+   for (var j= 0; j < 4; j++){
+    $("label[for=choice" + j + "]").text(questionList[i].choices[j]);
+    $("input#choice" + j).attr("value", j);
+   }
 
-
-function displayQuestions(){
- for(var i = 0; i < questionList.length; i++){
- alert(questionList[i].question);
- for ( var j = 0; j < )
- $("#label[for=choice" + j ).text(questionList[i].choices[0]);
- 
- console.log()
- }
 }
-
-
-
 
 
 
