@@ -1,18 +1,21 @@
 /* font-family: 'Rochester', cursive;
-font-family: 'Alfa Slab One', cursive; */
-/* body{
-    background-image: url("../images/Disney-2.jpg");
-    background-repeat: no-repeat;
-    background-size: cover;
-} */
+font-family: 'Alfa Slab One', cursive;  */
+body{
+    /* background-image: url("../images/Disney-2.jpg"); */
+    /* background-color: #000; */
+   
+    
+}
 
-/* #container {
+ #container { 
      width: 980px;
     height: 800px; 
     margin: 0 auto;
     border: 1px solid #000000; /* remove after game is constructed
 
-} */
+}
+
+
 
 
 

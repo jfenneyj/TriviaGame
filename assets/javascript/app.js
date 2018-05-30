@@ -3,9 +3,6 @@ $(document).ready(function(){
 
 
 
-
-
-
 var questionList = [ {
   question: "In Sleeping Beauty, who was Princess Aurora betrothed to?",
   choices: ["Prince Phillip", "Prince Charles", "Prince Henry", "Prince William"],
@@ -39,7 +36,7 @@ var questionList = [ {
 }, {
   question: "What are the names of the three fairies in the Disney classic Sleeping Beauty",
   choices: ["Attina, Aquata, Ursala", "Flora, Fauna and Merryweather", "Hilo, Milo and Dingo", "Aerwyna, Ailsa and Aine"],
-  indexAnswer: 0,
+  indexAnswer: 1,
   photo: "assets/images/flora-fauna-merryweather.gif"
 },
 
@@ -62,7 +59,10 @@ var timerId;
 var running = false;
 var currentQuestion = 0;
 
+
+
 $("#reset").hide();
+$("#next").hide();
 
 //start game with start button
 
@@ -70,8 +70,10 @@ $("#start").on("click", function(){
 // hide the start button
     $("#start").hide();
     runTimer();
+    displayQuestions(0);
 })
 
+//timer countdown
 function runTimer(){
   if (!running){
     timerId = setInterval(decrement, 1000);
@@ -82,8 +84,24 @@ function runTimer(){
 function decrement(){
   timer--;
   $("#timerCt").html("<h3>Time remaining: " + timer + "<h3>");
+
+  // if(timer === 0) {
+  //   currentQuestion++;
+  //   displayQuestion(currentQuestion);
+  //   timer = 31;
 }
 
+
+
+function displayQuestions(){
+ for(var i = 0; i < questionList.length; i++){
+ alert(questionList[i].question);
+ for ( var j = 0; j < )
+ $("#label[for=choice" + j ).text(questionList[i].choices[0]);
+ 
+ console.log()
+ }
+}
 
 
 
