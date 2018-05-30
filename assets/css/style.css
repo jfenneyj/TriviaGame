@@ -1,17 +1,25 @@
 /* font-family: 'Rochester', cursive;
 font-family: 'Alfa Slab One', cursive;  */
+body, html {
+    height: 100%;
+}
+
+
+
 body{
-    /* background-image: url("../images/Disney-2.jpg"); */
-    /* background-color: #000; */
+    background-image: url("../images/castle.jpg");
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
    
-    
 }
 
  #container { 
-     width: 980px;
+     width: 700px;
     height: 800px; 
     margin: 0 auto;
-    border: 1px solid #000000; /* remove after game is constructed
+    border: 1px solid #ffffff; /* remove after game is constructed
 
 }
 
